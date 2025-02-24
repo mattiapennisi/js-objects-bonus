@@ -30,6 +30,10 @@ const prodotti = [
   { nome: "Monitor", prezzo: 200 }
 ];
 
+function estraiValori(arr, chiave) {
+    
+}
+
 // console.log(estraiValori(prodotti, "nome")); 
 // Output: ["Laptop", "Mouse", "Monitor"]
 
