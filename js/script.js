@@ -31,15 +31,48 @@ const prodotti = [
 ];
 
 function estraiValori(arr, chiave) {
-    
+  let result = []
+
+  for (let index = 0; index < arr.length; index++) {
+    let proprieta = arr[index][chiave]
+
+    result.push(proprieta)
+  }
+
+  return result
 }
 
-// console.log(estraiValori(prodotti, "nome")); 
+console.log(estraiValori(prodotti, "nome")); 
+
 // Output: ["Laptop", "Mouse", "Monitor"]
 
 // Conta la frequenza delle parole in una stringa
 // Scrivi una funzione conteggioParole(str) che restituisca un oggetto in cui le chiavi sono le parole e i valori il numero di volte che compaiono nella stringa.
-// console.log(conteggioParole("ciao mondo ciao a tutti mondo")); 
+
+function conteggioParole(str) {
+  let arrayParole = str.split(' ')
+
+  let parolaTemp = null
+  let paroleObject = {}
+  let paroleObjectKeys = []
+  
+  for (let index = 0; index < arrayParole.length; index++) {
+    
+    parolaTemp = arrayParole[index]
+
+    if (paroleObjectKeys.includes(parolaTemp)) {
+      paroleObject[parolaTemp] += 1
+    } else {
+      paroleObjectKeys.push(parolaTemp)
+      paroleObject[parolaTemp] = 1
+    }
+  }
+
+  return paroleObject
+}
+
+console.log(conteggioParole("ciao mondo ciao a tutti mondo")); 
+
 // Output: { ciao: 2, mondo: 2, a: 1, tutti: 1 }
 
 //  Crea un array di valori unici
