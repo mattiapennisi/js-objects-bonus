@@ -100,10 +100,40 @@ console.log(valoriUniciPerProprieta([
 
 // 5 - Unisci due array di oggetti unificando le chiavi comuni
 // Scrivi una funzione unisciArrayOggetti(arr1, arr2, chiave) che unisca due array di oggetti sulla base di una chiave comune.
+
 const utenti1 = [{ id: 1, nome: "Mario" }, { id: 2, nome: "Anna" }];
 const utenti2 = [{ id: 1, città: "Roma" }, { id: 2, città: "Milano" }];
 
-// console.log(unisciArrayOggetti(utenti1, utenti2, "id"));
+function unisciArrayOggetti(arr1, arr2, chiave) {
+  let arrayUnico = [...arr1, ...arr2]
+  let arrayChiave1 = []
+  let arrayChiave2 = []
+  let arrayChiave1Obj = {}
+  let arrayChiave2Obj = {}
+
+  for (let i = 0; i < arrayUnico.length; i++) {
+    if (arrayUnico[i][chiave] == arrayUnico[0][chiave]) {
+      arrayChiave1.push(arrayUnico[i])  
+    } else {
+      arrayChiave2.push(arrayUnico[i])
+    }
+  }
+
+  for (let i = 0; i < arrayChiave1.length; i++) {
+    let newKey = arrayChiave1[i]
+    arrayChiave1Obj = {...arrayChiave1Obj, ...newKey}
+  }
+
+  for (let i = 0; i < arrayChiave2.length; i++) {
+    let newKey = arrayChiave2[i]
+    arrayChiave2Obj = {...arrayChiave2Obj, ...newKey}
+  }
+
+  return [arrayChiave1Obj, arrayChiave2Obj]
+}
+
+console.log(unisciArrayOggetti(utenti1, utenti2, "id"));
+
 /* Output:
 [
   { id: 1, nome: "Mario", città: "Roma" },
@@ -114,5 +144,70 @@ const utenti2 = [{ id: 1, città: "Roma" }, { id: 2, città: "Milano" }];
 // 6 - Confronta due array di oggetti e trova quelli che mancano in uno dei due
 // Scrivi una funzione trovaDifferenze(arr1, arr2, chiave) che restituisca gli oggetti che sono presenti in un array ma non nell’altro, basandosi su una chiave.
 
+const array1 = [
+  { id: 1, nome: "Mario" },
+  { id: 2, nome: "Luca" },
+  { id: 3, nome: "Paola" }
+];
+
+const array2 = [
+  { id: 2, nome: "Luca" },
+  { id: 3, nome: "Paola" },
+  { id: 4, nome: "Anna" }
+];
+
+function trovaDifferenze(arr1, arr2, chiave) {
+  let oggettiDifferenti = []
+  let itMatches = false
+
+  for (let i = 0; i < arr1.length; i++) {
+    itMatches = false
+
+    for (let j = 0; j < arr2.length; j++) {
+
+      if (arr1[i][chiave] == arr2[j][chiave]) {
+        itMatches = true
+        break
+      }
+    }
+
+    if (!itMatches) {
+      oggettiDifferenti.push(arr1[i])
+    }
+  }
+
+  for (let i = 0; i < arr2.length; i++) {
+    itMatches = false
+
+    for (let j = 0; j < arr1.length; j++) {
+
+      if (arr2[i][chiave] == arr1[j][chiave]) {
+        itMatches = true
+        break
+      }
+    }
+
+    if (itMatches == false) {
+      oggettiDifferenti.push(arr2[i])
+    }
+  }
+
+  return oggettiDifferenti
+}
+
+console.log(trovaDifferenze(array1, array2, 'id'))
+
 // 7 - Trova il valore più comune in una proprietà di un array di oggetti
 // Scrivi una funzione trovaValoreComune(arr, chiave) che restituisca il valore più comune in una certa proprietà.
+
+const insegnanti = [
+  { nome: "Paolo", corso: "Matematica" },
+  { nome: "Sara", corso: "Fisica" },
+  { nome: "Luca", corso: "Matematica" }
+];
+
+function trovaValoreComune(arr, chiave) {
+
+}
+
+console.log(trovaValoreComune(insegnanti, 'corso'));
