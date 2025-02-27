@@ -207,7 +207,26 @@ const insegnanti = [
 ];
 
 function trovaValoreComune(arr, chiave) {
+  let quantitaValori = 0
+  let quantitaValoriMassimo = 0
+  let valoreMaggiore = null
 
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr.length; j++) {
+      if (arr[i][chiave] == arr[j][chiave]) {
+        quantitaValori++
+      }
+    }
+
+    if (quantitaValori > quantitaValoriMassimo) {
+      quantitaValoriMassimo = quantitaValori
+      valoreMaggiore = arr[i][chiave] 
+    }
+  }
+  
+  let chiaveUppercase = chiave.charAt(0).toUpperCase() + chiave.slice(1)
+  let risultato = `${chiaveUppercase}: ${valoreMaggiore}`
+  return risultato
 }
 
 console.log(trovaValoreComune(insegnanti, 'corso'));
